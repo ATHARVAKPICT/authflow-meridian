@@ -1,68 +1,174 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useStore } from '../store/useStore';
+import Worklist from '../components/Worklist';
+import CaseWorkspace from '../components/CaseWorkspace';
+import InsightsPage from '../components/InsightsPage';
+import AboutPage from '../components/AboutPage';
+import PatientView from '../components/PatientView';
+
+type Page = 'worklist' | 'workspace' | 'insights' | 'about' | 'patient';
 
 export default function Home() {
+  const { selectedCaseId, role, setRole, region, setRegion, resetCases, replayMode, setReplayMode, demoSpeed, setDemoSpeed } = useStore();
+  const [page, setPage] = useState<Page>('worklist');
+
+  // Auto-navigate to workspace when a case is selected
+  useEffect(() => {
+    if (selectedCaseId && page === 'worklist') {
+      setPage('workspace');
+    }
+  }, [selectedCaseId]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-base)', display: 'flex', flexDirection: 'column' }}>
+      {/* SYNTHETIC DATA BANNER */}
+      <div className="synthetic-banner">
+        ⚠️ SYNTHETIC DATA — PROTOTYPE — No real patient, policy, or clinical data. All names, numbers and clinical values are invented. — For demonstration purposes only.
+      </div>
+
+      {/* TOP NAV */}
+      <header style={{
+        background: 'var(--bg-surface)',
+        borderBottom: '1px solid var(--border-subtle)',
+        padding: '0 24px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '16px',
+        height: '56px',
+        flexShrink: 0,
+      }}>
+        {/* Logo */}
+        <div
+          style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+          onClick={() => { setPage('worklist'); }}
+        >
+          <div style={{
+            width: 32, height: 32, borderRadius: 8,
+            background: 'linear-gradient(135deg, #3b82f6, #7c3aed)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 16, fontWeight: 700, color: 'white',
+          }}>A</div>
+          <div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>AuthFlow</div>
+            <div style={{ fontSize: 10, color: 'var(--text-muted)', lineHeight: 1 }}>Meridian Health · Pre-Auth Copilot</div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <div style={{ flex: 1 }} />
+
+        {/* Nav links */}
+        {[
+          { id: 'worklist', label: '📋 Worklist' },
+          { id: 'insights', label: '📊 Insights' },
+          { id: 'about', label: '📖 About' },
+          { id: 'patient', label: '👤 Patient View' },
+        ].map(nav => (
+          <button
+            key={nav.id}
+            onClick={() => setPage(nav.id as Page)}
+            style={{
+              background: page === nav.id ? 'rgba(59,130,246,0.15)' : 'transparent',
+              border: page === nav.id ? '1px solid rgba(59,130,246,0.3)' : '1px solid transparent',
+              borderRadius: 6,
+              color: page === nav.id ? '#60a5fa' : 'var(--text-secondary)',
+              padding: '5px 12px',
+              fontSize: 13,
+              fontWeight: 500,
+              cursor: 'pointer',
+              transition: 'all 0.15s',
+            }}
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            {nav.label}
+          </button>
+        ))}
+
+        <div style={{ width: 1, height: 20, background: 'var(--border-subtle)' }} />
+
+        {/* Role switcher */}
+        <select
+          value={role}
+          onChange={e => setRole(e.target.value as never)}
+          style={{ fontSize: 12, padding: '4px 8px', minWidth: 120 }}
+        >
+          <option value="desk">🖥️ Desk Executive</option>
+          <option value="doctor">👨‍⚕️ Doctor</option>
+          <option value="rcm_head">📈 RCM Head</option>
+          <option value="patient">👤 Patient</option>
+        </select>
+
+        {/* Region */}
+        <select
+          value={region}
+          onChange={e => setRegion(e.target.value as never)}
+          style={{ fontSize: 12, padding: '4px 8px', minWidth: 100 }}
+        >
+          <option value="india">🇮🇳 India (NHCX)</option>
+          <option value="ksa">🇸🇦 KSA (NPHIES) [mock]</option>
+          <option value="uae">🇦🇪 UAE (DHA) [mock]</option>
+        </select>
+
+        {/* Replay/Live toggle */}
+        <button
+          onClick={() => setReplayMode(!replayMode)}
+          style={{
+            background: replayMode ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)',
+            border: `1px solid ${replayMode ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.3)'}`,
+            borderRadius: 6,
+            color: replayMode ? '#10b981' : '#ef4444',
+            padding: '4px 10px',
+            fontSize: 11,
+            fontWeight: 700,
+            cursor: 'pointer',
+            letterSpacing: '0.05em',
+          }}
+        >
+          {replayMode ? '▶ REPLAY' : '🔴 LIVE'}
+        </button>
+
+        {/* Speed toggle */}
+        <button
+          onClick={() => setDemoSpeed(demoSpeed === 1 ? 60 : 1)}
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
+            borderRadius: 6,
+            color: 'var(--text-secondary)',
+            padding: '4px 10px',
+            fontSize: 11,
+            fontWeight: 700,
+            cursor: 'pointer',
+          }}
+        >
+          ×{demoSpeed}
+        </button>
+
+        {/* Reset */}
+        <button
+          onClick={resetCases}
+          style={{
+            background: 'transparent',
+            border: '1px solid var(--border)',
+            borderRadius: 6,
+            color: 'var(--text-muted)',
+            padding: '4px 10px',
+            fontSize: 11,
+            cursor: 'pointer',
+          }}
+          title="Reset all cases to initial state"
+        >
+          ↺ Reset
+        </button>
+      </header>
+
+      {/* MAIN CONTENT */}
+      <main style={{ flex: 1, overflow: 'hidden' }}>
+        {page === 'worklist' && <Worklist onOpenCase={() => setPage('workspace')} />}
+        {page === 'workspace' && <CaseWorkspace />}
+        {page === 'insights' && <InsightsPage />}
+        {page === 'about' && <AboutPage />}
+        {page === 'patient' && <PatientView />}
       </main>
     </div>
   );

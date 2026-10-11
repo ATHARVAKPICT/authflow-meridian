@@ -1,0 +1,140 @@
+{
+  "policies": [
+    {
+      "id": "POL-ANIL-001",
+      "insurer": "Suraksha General Insurance",
+      "tpa": "CarePath TPA",
+      "product": "Suraksha Health Shield – Individual",
+      "policyNumber": "SRK-IND-2021-4471983",
+      "inceptionDate": "2021-08-10",
+      "continuousCoverageMonths": 31,
+      "sumInsured": 500000,
+      "balanceSumInsured": 500000,
+      "roomRentCapPctPerDay": 0.01,
+      "icuCapPctPerDay": 0.02,
+      "coPayPct": 0,
+      "waitingPeriods": {
+        "initialDays": 30,
+        "pedMonths": 36,
+        "specific": [
+          { "condition": "knee replacement", "months": 24 },
+          { "condition": "joint replacement", "months": 24 },
+          { "condition": "cataract", "months": 24 },
+          { "condition": "hernia", "months": 24 }
+        ]
+      },
+      "disclosedPEDs": ["Osteoarthritis"],
+      "proportionateDeductionHeads": ["nursing", "ot", "surgeon", "anaesthetist", "consultation"],
+      "exclusions": ["cosmetic surgery", "dental (non-emergency)", "maternity (base plan)"],
+      "preHospDays": 30,
+      "postHospDays": 60,
+      "moratoriumMonths": 60
+    },
+    {
+      "id": "POL-MEERA-001",
+      "insurer": "Suraksha General Insurance",
+      "tpa": "CarePath TPA",
+      "product": "Suraksha Health Shield – Individual",
+      "policyNumber": "SRK-IND-2024-7821045",
+      "inceptionDate": "2024-03-24",
+      "continuousCoverageMonths": 0,
+      "sumInsured": 300000,
+      "balanceSumInsured": 300000,
+      "roomRentCapPctPerDay": 0.01,
+      "icuCapPctPerDay": 0.02,
+      "coPayPct": 0,
+      "waitingPeriods": {
+        "initialDays": 30,
+        "pedMonths": 36,
+        "specific": [
+          { "condition": "appendicitis", "months": 0 },
+          { "condition": "hernia", "months": 24 }
+        ]
+      },
+      "disclosedPEDs": [],
+      "proportionateDeductionHeads": ["nursing", "ot", "surgeon", "anaesthetist", "consultation"],
+      "exclusions": ["cosmetic surgery", "dental (non-emergency)"],
+      "preHospDays": 30,
+      "postHospDays": 60,
+      "moratoriumMonths": 60
+    },
+    {
+      "id": "POL-IMRAN-001",
+      "insurer": "Suraksha General Insurance",
+      "tpa": "CarePath TPA",
+      "product": "Suraksha Health Shield – Family Floater",
+      "policyNumber": "SRK-FAM-2020-3312887",
+      "inceptionDate": "2020-06-01",
+      "continuousCoverageMonths": 48,
+      "sumInsured": 1000000,
+      "balanceSumInsured": 1000000,
+      "roomRentCapPctPerDay": 0.01,
+      "icuCapPctPerDay": 0.02,
+      "coPayPct": 0,
+      "waitingPeriods": {
+        "initialDays": 30,
+        "pedMonths": 36,
+        "specific": []
+      },
+      "disclosedPEDs": ["Hypertension"],
+      "proportionateDeductionHeads": ["nursing", "ot", "surgeon", "anaesthetist", "consultation"],
+      "exclusions": ["cosmetic surgery"],
+      "preHospDays": 30,
+      "postHospDays": 60,
+      "moratoriumMonths": 60
+    },
+    {
+      "id": "POL-KAMALA-A",
+      "insurer": "Suraksha General Insurance",
+      "tpa": "CarePath TPA",
+      "product": "Suraksha Senior Shield – Individual",
+      "policyNumber": "SRK-SEN-2019-9901234",
+      "inceptionDate": "2019-01-15",
+      "continuousCoverageMonths": 65,
+      "sumInsured": 500000,
+      "balanceSumInsured": 500000,
+      "roomRentCapPctPerDay": 0.01,
+      "icuCapPctPerDay": 0.02,
+      "coPayPct": 0.2,
+      "waitingPeriods": {
+        "initialDays": 30,
+        "pedMonths": 36,
+        "specific": [
+          { "condition": "hip fracture", "months": 24 },
+          { "condition": "joint replacement", "months": 24 }
+        ]
+      },
+      "disclosedPEDs": ["Hypertension", "Osteoporosis"],
+      "proportionateDeductionHeads": ["nursing", "ot", "surgeon", "anaesthetist", "consultation"],
+      "exclusions": ["cosmetic surgery", "dental (non-emergency)"],
+      "preHospDays": 30,
+      "postHospDays": 60,
+      "moratoriumMonths": 60
+    },
+    {
+      "id": "POL-KAMALA-B",
+      "insurer": "Suraksha General Insurance",
+      "tpa": "CarePath TPA",
+      "product": "Suraksha Group Family Floater",
+      "policyNumber": "SRK-GRP-2022-4400771",
+      "inceptionDate": "2022-04-01",
+      "continuousCoverageMonths": 24,
+      "sumInsured": 300000,
+      "balanceSumInsured": 300000,
+      "roomRentCapPctPerDay": 0.01,
+      "icuCapPctPerDay": 0.02,
+      "coPayPct": 0,
+      "waitingPeriods": {
+        "initialDays": 30,
+        "pedMonths": 36,
+        "specific": []
+      },
+      "disclosedPEDs": ["Hypertension", "Osteoporosis"],
+      "proportionateDeductionHeads": ["nursing", "ot", "surgeon", "anaesthetist", "consultation"],
+      "exclusions": ["cosmetic surgery"],
+      "preHospDays": 30,
+      "postHospDays": 60,
+      "moratoriumMonths": 60
+    }
+  ]
+}
